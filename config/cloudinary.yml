@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: ddpizrmrj
+  api_key: '577698776791464'
+  api_secret: 86zIQ2UvvjG3yDGfrpADoldnas4
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: ddpizrmrj
+  api_key: '577698776791464'
+  api_secret: 86zIQ2UvvjG3yDGfrpADoldnas4
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: ddpizrmrj
+  api_key: '577698776791464'
+  api_secret: 86zIQ2UvvjG3yDGfrpADoldnas4
+  enhance_image_tag: true
+  static_image_support: false

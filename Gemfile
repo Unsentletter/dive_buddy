@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 
+# Use for uploading and storing profile photos
+gem 'carrierwave'
+gem 'cloudinary'
 # Use to provide secure log in and USER profiles
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
