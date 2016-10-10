@@ -1,0 +1,1 @@
+json.array! @location_lists, partial: 'location_lists/location_list', as: :location_list

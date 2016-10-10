@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-
+# Used for geolocator and maps
+gem 'geocoder'
 # Use for uploading and storing profile photos
 gem 'carrierwave'
 gem 'cloudinary'

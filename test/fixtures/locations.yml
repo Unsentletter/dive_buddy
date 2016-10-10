@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location_name: MyString
+  description: MyString
+  depth: MyString
+  difficulty: MyString
+  latitude: 1.5
+  longitude: 1.5
+  location_lists: one
+
+two:
+  location_name: MyString
+  description: MyString
+  depth: MyString
+  difficulty: MyString
+  latitude: 1.5
+  longitude: 1.5
+  location_lists: two

@@ -1,0 +1,1 @@
+json.partial! "location_lists/location_list", location_list: @location_list

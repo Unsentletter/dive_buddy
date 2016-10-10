@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007231515) do
+ActiveRecord::Schema.define(version: 20161010041202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "location_lists", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_location_lists_on_profile_id", using: :btree
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "location_name"
+    t.string   "description"
+    t.string   "depth"
+    t.string   "difficulty"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.integer  "location_lists_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["location_lists_id"], name: "index_locations_on_location_lists_id", using: :btree
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +43,8 @@ ActiveRecord::Schema.define(version: 20161007231515) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "photo"
+    t.float    "latitude"
+    t.float    "longitude"
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
@@ -43,5 +65,7 @@ ActiveRecord::Schema.define(version: 20161007231515) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "location_lists", "profiles"
+  add_foreign_key "locations", "location_lists", column: "location_lists_id"
   add_foreign_key "profiles", "users"
 end
