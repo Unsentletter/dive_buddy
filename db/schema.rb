@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011004740) do
+ActiveRecord::Schema.define(version: 20161011051206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20161011004740) do
     t.datetime "time_window"
     t.integer  "location_id"
     t.index ["profile_id"], name: "index_location_lists_on_profile_id", using: :btree
+  end
+
+  create_table "location_reviews", force: :cascade do |t|
+    t.integer  "profile_id"
+    t.integer  "location_id"
+    t.text     "review"
+    t.integer  "rating"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["location_id"], name: "index_location_reviews_on_location_id", using: :btree
+    t.index ["profile_id"], name: "index_location_reviews_on_profile_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
@@ -69,6 +80,8 @@ ActiveRecord::Schema.define(version: 20161011004740) do
   end
 
   add_foreign_key "location_lists", "profiles"
+  add_foreign_key "location_reviews", "locations"
+  add_foreign_key "location_reviews", "profiles"
   add_foreign_key "locations", "location_lists", column: "location_lists_id"
   add_foreign_key "profiles", "users"
 end

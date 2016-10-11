@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :location_reviews
   resources :locations
   resources :location_lists
   resources :profiles
