@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="profile_image">
-  <%= image_tag(@profile.photo_url)%>
+  <%= image_tag(@profile.photo_url(:thumb), :width =>100, :height => 100)%>
 </div>
 
 <p>
@@ -19,6 +19,9 @@
   <%= @profile.description %>
 </p>
 
+<%= link_to 'Search for divers', locations_path %>
+ <br>
+<%= link_to 'Location List', location_lists_path %>
 
 <% if user_signed_in? %>
   <li>

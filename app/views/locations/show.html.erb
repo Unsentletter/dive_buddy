@@ -30,10 +30,17 @@
   <%= @location.longitude %>
 </p>
 
-<p>
-  <strong>Location lists:</strong>
-  <%= @location.location_lists %>
-</p>
+
+
+<%= render 'location_lists/form', location_list: @location_list, location: @location %>
+
+<h1 class="header">Users who want to dive here</h1>
+
+
+
+<% @location.profiles.each do |profile| %>
+  <%= profile.name %>
+<% end %>
 
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <%= link_to 'Back', locations_path %>

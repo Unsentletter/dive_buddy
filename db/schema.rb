@@ -10,15 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010041202) do
+ActiveRecord::Schema.define(version: 20161011004740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "location_lists", force: :cascade do |t|
     t.integer  "profile_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "type_of_dive"
+    t.datetime "time_window"
+    t.integer  "location_id"
     t.index ["profile_id"], name: "index_location_lists_on_profile_id", using: :btree
   end
 

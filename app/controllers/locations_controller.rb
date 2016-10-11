@@ -10,6 +10,7 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
+    @location_list = LocationList.new
   end
 
   # GET /locations/new

@@ -12,8 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :profile_id %>
-    <%= f.text_field :profile_id %>
+    <%= f.hidden_field :location_id, :value => location.id %>
   </div>
 
   <div class="actions">
