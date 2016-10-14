@@ -1,0 +1,1 @@
+json.partial! "diver_reviews/diver_review", diver_review: @diver_review

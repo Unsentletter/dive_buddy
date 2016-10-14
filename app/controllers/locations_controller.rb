@@ -4,7 +4,16 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    if !user_signed_in?
+      redirect_to new_user_registration_path
+    elsif current_user.profile.nil?
+      @profile = Profile.new
+      redirect_to new_profile_path
+    else
+      #@profile = Profile.find(current_user.id)
+      @locations = Location.all
+    end
+
   end
 
   # GET /locations/1
@@ -26,7 +35,6 @@ class LocationsController < ApplicationController
   # POST /locations.json
   def create
     @location = Location.new(location_params)
-
     respond_to do |format|
       if @location.save
         format.html { redirect_to @location, notice: 'Location was successfully created.' }

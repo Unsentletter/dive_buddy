@@ -1,5 +1,6 @@
 class LocationReviewsController < ApplicationController
   before_action :set_location_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_location, only: [:new]
 
   # GET /location_reviews
   # GET /location_reviews.json
@@ -25,7 +26,7 @@ class LocationReviewsController < ApplicationController
   # POST /location_reviews.json
   def create
     @location_review = LocationReview.new(location_review_params)
-
+    @location_review.profile_id = current_user.profile.id
     respond_to do |format|
       if @location_review.save
         format.html { redirect_to @location_review, notice: 'Location review was successfully created.' }
@@ -65,6 +66,10 @@ class LocationReviewsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_location_review
       @location_review = LocationReview.find(params[:id])
+    end
+
+    def set_location
+      @location_id = params[:location]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,0 +1,1 @@
+json.array! @diver_reviews, partial: 'diver_reviews/diver_review', as: :diver_review

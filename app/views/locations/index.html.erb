@@ -16,11 +16,11 @@
   <tbody>
     <% @locations.each do |location| %>
       <tr>
-        <td><%= location.location_name %></td>
+        <td><%= link_to location.location_name, location %></td>
         <td><%= location.description %></td>
         <td><%= location.depth %></td>
         <td><%= location.difficulty %></td>
-        <td><%= link_to 'Show', location %></td>
+        <td><%= link_to 'Add Review', new_location_review_path(location: location.id) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -29,3 +29,4 @@
 <br>
 
 <%= link_to 'New Location', new_location_path %>
+<%= link_to 'View Profile', current_user.profile %>

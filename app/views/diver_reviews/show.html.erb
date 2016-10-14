@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Profile:</strong>
+  <%= @diver_review.profile %>
+</p>
+
+<p>
+  <strong>Diver review:</strong>
+  <%= @diver_review.diver_review %>
+</p>
+
+<p>
+  <strong>Diver rating:</strong>
+  <%= @diver_review.diver_rating %>
+</p>
+
+<%= link_to 'Edit', edit_diver_review_path(@diver_review) %> |
+<%= link_to 'Back', diver_reviews_path %>

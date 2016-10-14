@@ -11,14 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :profile_id %>
-    <%= f.text_field :profile_id %>
-  </div>
 
   <div class="field">
-    <%= f.label :location_id %>
-    <%= f.text_field :location_id %>
+    <%= f.hidden_field :location_id, :value => @location_id %>
   </div>
 
   <div class="field">

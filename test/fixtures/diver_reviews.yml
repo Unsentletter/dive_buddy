@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profile: one
+  diver_review: MyText
+  diver_rating: 1
+
+two:
+  profile: two
+  diver_review: MyText
+  diver_rating: 1

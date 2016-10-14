@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [ :edit, :update, :destroy]
+  before_action :set_profile, only: [ :edit, :update, :destroy, :show]
 
   # GET /profiles
   # GET /profiles.json
@@ -10,15 +10,6 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    if !user_signed_in?
-      redirect_to new_user_registration_path
-    elsif current_user.profile.nil?
-      @profile = Profile.new
-      redirect_to new_profile_path
-    else
-      #@profile = Profile.find(current_user.id)
-      @profile = current_user.profile
-    end
   end
 
   # GET /profiles/new

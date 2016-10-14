@@ -1,5 +1,47 @@
 <p id="notice"><%= notice %></p>
 
+<div id="map"></div>
+    <script>
+
+      function initMap() {
+        var myLatLng = {lat: <%= @location.latitude %>, lng: <%= @location.longitude %>};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatLng,
+          zoom: 11
+        });
+
+        var contentString = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h1 id="firstHeading" class="firstHeading"><%= @location.location_name %></h1>'+
+            '<div id="bodyContent">'+
+            '<p><%= @location.description %></p>'+
+            '<p><%= @location.depth %></p>'+
+            '<p><%= @location.difficulty %></p>'
+            '</div>'+
+            '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: '<%= @location.location_name %>'
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvTY_nvQt--eg9ArutXjvr8qq1iWaWnWY&callback=initMap"
+    async defer></script>
+
+
 <p>
   <strong>Location name:</strong>
   <%= @location.location_name %>
@@ -33,14 +75,16 @@
 
 
 <%= render 'location_lists/form', location_list: @location_list, location: @location %>
+<%= link_to 'See Location Reviews', location_reviews_path %>
+<%= link_to 'Back to Locations', locations_path %>
 
-<h1 class="header">Users who want to dive here</h1>
+<h1 class="header">Users who also want to dive here</h1>
 
-
-
-<% @location.profiles.each do |profile| %>
-  <%= profile.name %>
-<% end %>
-
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
+<ul>
+  <% @location.profiles.each do |profile| %>
+    <li>
+      <%= profile.user.id %>
+      <%= link_to profile.name, profile_url(profile.id) %>
+    </li>
+  <% end %>
+</ul>

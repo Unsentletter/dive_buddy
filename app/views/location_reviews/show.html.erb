@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
   <strong>Profile:</strong>
-  <%= @location_review.profile %>
+  <%= @location_review.profile.name %>
 </p>
 
 <p>
   <strong>Location:</strong>
-  <%= @location_review.location %>
+  <%= @location_review.location.location_name %>
 </p>
 
 <p>
@@ -20,5 +21,5 @@
   <%= @location_review.rating %>
 </p>
 
-<%= link_to 'Edit', edit_location_review_path(@location_review) %> |
-<%= link_to 'Back', location_reviews_path %>
+<%= link_to 'Back to location', locations_path %>
+<%= link_to 'Home', root_path %>

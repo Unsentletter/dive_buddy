@@ -16,8 +16,8 @@
   <tbody>
     <% @location_reviews.each do |location_review| %>
       <tr>
-        <td><%= location_review.profile %></td>
-        <td><%= location_review.location %></td>
+        <td><%= location_review.profile.name %></td>
+        <td><%= location_review.location.location_name %></td>
         <td><%= location_review.review %></td>
         <td><%= location_review.rating %></td>
         <td><%= link_to 'Show', location_review %></td>
