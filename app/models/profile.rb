@@ -8,10 +8,4 @@ class Profile < ApplicationRecord
 
   mount_uploader :photo,ProfilePictureUploader
 
- geocoded_by :current_sign_in_ip   # can also be an IP address
- after_validation :geocode          # auto-fetch coordinates
-
- # def name
- #   @profile = @profile.name
- # end
 end

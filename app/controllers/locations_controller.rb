@@ -18,12 +18,13 @@ class LocationsController < ApplicationController
 
   def show_nearby_locations
     @nearbys = Location.near([@location.latitude, @location.longitude], 20, :order => "distance", :units => km)
-    @nearbys.first(20)
+    # @nearbys.first(20)
   end
-  
+
   # GET /locations/1
   # GET /locations/1.json
   def show
+    @nearbys = Location.near([@location.latitude, @location.longitude], 20, :units => :km)
     @location_list = LocationList.new
     @locations = Location.all
   end

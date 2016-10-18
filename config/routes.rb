@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   resources :locations
   resources :location_lists
   resources :profiles
-  devise_for :users
   resources :chat_rooms, only: [:new, :create, :show, :index]
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
   mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

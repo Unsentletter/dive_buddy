@@ -5,5 +5,8 @@ class Location < ApplicationRecord
 
   after_create :create_location_list
 
+  reverse_geocoded_by :latitude, :longitude
+  after_validation :reverse_geocode
+
 
 end

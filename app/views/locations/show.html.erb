@@ -36,11 +36,13 @@
           content: contentString
         }), marker, i;
         // Loop through locations index and place marker on map
-        var marker = new google.maps.Marker({
-          position: newLatLng,
-          map: map,
-          title: '<%= @location.location_name %>'
-        });
+        <% @nearbys.each do |nearby| %>
+          var marker = new google.maps.Marker({
+            position: { lat: <%= nearby.latitude %>, lng: <%= nearby.longitude %> },
+            map: map,
+            title: '<%= nearby.location_name %>'
+          });
+        <% end %>
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function(){
