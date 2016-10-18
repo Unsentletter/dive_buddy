@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'redis', '~>3.2'
+# Used to make stuff pretty
+gem 'bootstrap-sass', '~> 3.3.6'
 # Used for geolocator and maps
 gem 'geocoder'
 # Use for uploading and storing profile photos
