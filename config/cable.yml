@@ -4,7 +4,7 @@ development:
 test:
   adapter: async
 
-production:
+production: &production
   # adapter: redis
   # url: redis://redistogo:1fccfdd32c5e4c70a510f4b04affc278@sculpin.redistogo.com:10726/
   :url: redis://redistogo:1fccfdd32c5e4c70a510f4b04affc278@sculpin.redistogo.com:10726/
