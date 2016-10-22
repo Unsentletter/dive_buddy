@@ -5,5 +5,11 @@ test:
   adapter: async
 
 production:
-  adapter: redis
-  url: redis://redistogo:1fccfdd32c5e4c70a510f4b04affc278@sculpin.redistogo.com:10726/
+  # adapter: redis
+  # url: redis://redistogo:1fccfdd32c5e4c70a510f4b04affc278@sculpin.redistogo.com:10726/
+  :url: redis://redistogo:1fccfdd32c5e4c70a510f4b04affc278@sculpin.redistogo.com:10726/
+  :host: sculpin.redistogo.com
+  :port: 10726
+  :password: 1fccfdd32c5e4c70a510f4b04affc278
+  :inline: true
+  :timeout: 1
