@@ -84,6 +84,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  # Middleware for action_cable web sockets
+  config.middleware.use ChatActionCable
+  config.web_socket_server_url = "wss://dive-buddy.herokuapp.com/"
+
   # Use for Chatroom
   config.web_socket_server_url = "wss://dive-buddy.herokuapp.com/cable"
   config.action_cable.allowed_request_origins = ['https://dive-buddy.herokuapp.com/', 'http://dive-buddy.herokuapp.com/']
