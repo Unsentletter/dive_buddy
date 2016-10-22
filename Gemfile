@@ -1,5 +1,11 @@
 source 'https://rubygems.org'
 
+# Used refactoring code
+gem 'rubocop'
+# Used for authorisation and user restrction
+gem 'cancancan', '~> 1.10'
+gem 'rolify'
+# Used for message board
 gem 'redis', '~>3.2'
 # Used to make stuff pretty
 gem 'bootstrap-sass', '~> 3.3.6'

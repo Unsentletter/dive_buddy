@@ -10,15 +10,9 @@ class LocationsController < ApplicationController
       @profile = Profile.new
       redirect_to new_profile_path
     else
-      #@profile = Profile.find(current_user.id)
       @locations = Location.all
     end
 
-  end
-
-  def show_nearby_locations
-    @nearbys = Location.near([@location.latitude, @location.longitude], 20, :order => "distance", :units => km)
-    # @nearbys.first(20)
   end
 
   # GET /locations/1
@@ -27,6 +21,7 @@ class LocationsController < ApplicationController
     @nearbys = Location.near([@location.latitude, @location.longitude], 20, :units => :km)
     @location_list = LocationList.new
     @locations = Location.all
+    @location_reviews = @location.location_reviews
   end
 
   # GET /locations/new

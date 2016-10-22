@@ -1,97 +1,40 @@
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<div id="map"></div>
-    <script>
+<div class="maprow row">
+    <div class="col-md-6 mapdiv">
+      <div id="map"></div>
 
-      function initMap() {
-        var map;
-        var myLatLng = {lat: <%= @location.latitude %>, lng: <%= @location.longitude %>};
+    </div>
 
-        //display map on page centred over chosen destination
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: myLatLng,
-          zoom: 11
-        });
-
-        var markers=[];
-        var infoWindowContent=[];
-
-        var newLatLng = {lat: <%= @location.latitude %>, lng: <%= @location.longitude %>}
-
-        var contentString = '<div id="content">'+
-            '<div id="siteNotice">'+
-            '</div>'+
-            '<h1 id="firstHeading" class="firstHeading"><%= @location.location_name %></h1>'+
-            '<div id="bodyContent">'+
-            '<p><%= @location.description %></p>'+
-            '<p><%= @location.depth %></p>'+
-            '<p><%= @location.difficulty %></p>'+
-            '<p><%= @location.latitude %></p>'+
-            '<p><%= @location.longitude %></p>'+
-            '</div>'+
-            '</div>';
-
-        // display multiple markers on the map and each has its own info box
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        }), marker, i;
-        // Loop through locations index and place marker on map
-        <% @nearbys.each do |nearby| %>
-          var marker = new google.maps.Marker({
-            position: { lat: <%= nearby.latitude %>, lng: <%= nearby.longitude %> },
-            map: map,
-            title: '<%= nearby.location_name %>'
-          });
-        <% end %>
-
-        google.maps.event.addListener(marker, 'click', (function(marker, i) {
-          return function(){
-          infowindow.setContent(infoWindowContent[i][0]);
-          infowindow.open(map, marker);
-          }
-        })(marker, i));
-
-
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvTY_nvQt--eg9ArutXjvr8qq1iWaWnWY&callback=initMap"
-    async defer></script>
-
-
-<p>
-  <strong>Location name:</strong>
-  <%= @location.location_name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @location.description %>
-</p>
-
-<p>
-  <strong>Depth:</strong>
-  <%= @location.depth %>
-</p>
-
-<p>
-  <strong>Difficulty:</strong>
-  <%= @location.difficulty %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @location.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @location.longitude %>
-</p>
-
-
+  <div class="col-md-6 detailsdiv">
+    <p>
+      <strong>Location name:</strong>
+      <%= @location.location_name %>
+    </p>
+    <p>
+      <strong>Description:</strong>
+      <%= @location.description %>
+    </p>
+    <p>
+      <strong>Depth:</strong>
+      <%= @location.depth %>
+    </p>
+    <p>
+      <strong>Difficulty:</strong>
+      <%= @location.difficulty %>
+    </p>
+    <p>
+      <strong>Latitude:</strong>
+      <%= @location.latitude %>
+    </p>
+    <p>
+      <strong>Longitude:</strong>
+      <%= @location.longitude %>
+    </p>
+  </div>
+</div>
 
 <%= render 'location_lists/form', location_list: @location_list, location: @location %>
-<%= link_to 'See Location Reviews', location_reviews_path %>
 <%= link_to 'Back to Locations', locations_path %>
 
 <h1 class="header">Users who also want to dive here</h1>
@@ -99,8 +42,61 @@
 <ul>
   <% @location.profiles.each do |profile| %>
     <li>
-      <%= profile.user.id %>
       <%= link_to profile.name, profile_url(profile.id) %>
     </li>
   <% end %>
 </ul>
+
+<%= link_to 'Add Review', new_location_review_path(location: @location.id) %>
+<br>
+<%= "Location reviews" %>
+<ul>
+  <% @location_reviews.each do |review| %>
+    <li>
+      <%= review.review %>
+      <%= review.rating %>
+    </li>
+    <% end %>
+</ul>
+
+<script>
+  function initMap() {
+    var myLatLng = {lat: <%= @location.latitude %>, lng: <%= @location.longitude %>};
+    //display map on page centred over chosen destination
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: myLatLng,
+      zoom: 11
+    });
+    // Loop through locations index and place marker on map
+    <% @nearbys.each_with_index do |nearby, i| %>
+      var marker<%=i%> = new google.maps.Marker({
+        position: { lat: <%= nearby.latitude %>, lng: <%= nearby.longitude %> },
+        map: map,
+        title: '<%= nearby.location_name %>'
+      });
+      // Adds content to info box for each location
+      var contentString = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading"><%= link_to nearby.location_name, location_path(nearby) %></h1>'+
+          '<div id="bodyContent">'+
+          '<p><%= "Description: " %><%= nearby.description %><br>'+
+          '<%= "Depth: " %><%= nearby.depth %><br>'+
+          '<%= "Difficulty: " %><%= nearby.difficulty %><br>'+
+          '<%= "Latitude: " %><%= nearby.latitude %><br>'+
+          '<%= "Longitude: " %><%= nearby.longitude %></p>'+
+          '</div>'+
+          '</div>';
+      // Sets infowindow variable to be used below
+      var infowindow<%=i%> = new google.maps.InfoWindow({
+      content: contentString
+      });
+      // Attaches info window to marker
+      marker<%=i%>.addListener('click', function() {
+      infowindow<%=i%>.open(map, marker<%=i%>);
+      });
+    <% end %>
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDvTY_nvQt--eg9ArutXjvr8qq1iWaWnWY&callback=initMap"
+async defer></script>

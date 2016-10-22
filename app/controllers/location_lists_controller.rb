@@ -29,7 +29,7 @@ class LocationListsController < ApplicationController
 
     respond_to do |format|
       if @location_list.save
-        format.html { redirect_to locations_path, notice: 'Location list was successfully created.' }
+        format.html { redirect_to location_path(@location_list.location), notice: 'Location list was successfully created.' }
         format.json { render :show, status: :created, location: @location_list }
       else
         format.html { render :new }

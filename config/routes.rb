@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :chat_rooms, only: [:new, :create, :show, :index]
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  #  routes for private chat
+  resources :conversations do
+    resources :messenger
+  end
+
   mount ActionCable.server => '/cable'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
