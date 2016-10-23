@@ -23,6 +23,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+    <% if params[:user_type] %>
+      <%= f.input :user_type, input_html: { value: params[:user_type]} %>
+    <% end %>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
