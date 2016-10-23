@@ -1,5 +1,11 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
+
+  # Cacncancan not authorised redirect to root
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, :alert => exception.message
+  end
 
   # GET /locations
   # GET /locations.json

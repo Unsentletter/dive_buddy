@@ -19,10 +19,13 @@
   <%= @profile.description %>
 </p>
 
-<%= link_to 'Search for divers', locations_path %>
-<%= link_to 'Chat', chat_rooms_path %>
+<%= link_to 'Search for divers', locations_path %><br>
+<%= link_to 'Chat', chat_rooms_path %><br>
+<% if current_user.profile == @profile %>
+  <%= link_to 'Edit', edit_profile_path(@profile), class: 'btn btn-warning' %>
+<% end %>
 <br>
-<br />
+<br>
 
 <% if user_signed_in? %>
   <li>

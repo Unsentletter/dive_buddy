@@ -19,8 +19,8 @@ class User < ApplicationRecord
   # after_create :assign_role
   #
   #   def assign_role
-  #     if user_type == 'owner'
-  #       add_role :owner
+  #     if user_type == 'admin'
+  #       add_role :admin
   #     end
   #   end
 

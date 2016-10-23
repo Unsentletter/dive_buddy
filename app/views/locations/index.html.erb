@@ -21,7 +21,14 @@
         <td><%= location.depth %></td>
         <td><%= location.difficulty %></td>
         <td>
+          <% if can? :update, @location %>
+          <%= link_to "Edit", edit_location_path(location.id) %>
+          <% end %>
+        </td>
+        <td>
+          <% if can? :update, @location %>
           <%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
         </td>
       </tr>
     <% end %>
